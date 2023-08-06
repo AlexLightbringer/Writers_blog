@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Start Page</title>
+  <style>
+    /* Global styles */
+    /* Sets box-sizing for all elements to border-box */
+    * {
+      box-sizing: border-box;
+    }
+
+    /* Body styles */
+    body {
+      background: #1A1E23; /* Sets the background color */
+      font-family: 'Lato', sans-serif; /* Sets the font-family */
+      -webkit-font-smoothing: antialiased; /* Improves font rendering on WebKit browsers */
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Navigation styles */
+    nav {
+      position: fixed; /* Fixes the navigation bar to the top */
+      top: 50px; /* Sets the top distance */
+      width: 100%; /* Sets the full width of the navigation bar */
+      margin-left: 50%; /* Centers the navigation items */
+      padding-bottom: 12px; /* Adds some padding to the bottom */
+      background: #1A1E23; /* Sets the background color */
+      z-index: 1000; /* Sets the stacking order */
+    }
+
+    nav .line {
+      height: 2px; /* Sets the height of the line under active navigation item */
+      position: absolute; /* Positions the line absolutely at the bottom of the navigation items */
+      bottom: 0;
+      margin: 10px 0 0 0; /* Adds some margin to the line */
+      background: #961d07; /* Sets the color of the line */
+      transition: all 0.4s ease; /* Adds a smooth transition effect on hover */
+    }
+
+    nav ul {
+      padding: 0; /* Removes padding from the unordered list */
+      margin: 0; /* Removes margin from the unordered list */
+      list-style: none; /* Removes the list bullet points */
+      display: flex; /* Displays the navigation items in a row */
+    }
+
+    nav ul li {
+      margin: 0 40px 0 0; /* Adds spacing between navigation items */
+      opacity: .4; /* Sets the initial opacity of the navigation items */
+      transition: all 0.4s ease; /* Adds a smooth transition effect on hover */
+    }
+
+    nav ul li:hover {
+      opacity: .7; /* Sets the opacity of the navigation items on hover */
+    }
+
+    nav ul li.active {
+      opacity: 1; /* Sets the opacity of the active navigation item */
+    }
+
+    nav ul li:last-child {
+      margin-right: 0; /* Removes the right margin from the last navigation item */
+    }
+
+    nav ul li a {
+      text-decoration: none; /* Removes underline from links */
+      color: #fff; /* Sets the text color to white */
+      text-transform: uppercase; /* Transforms text to uppercase */
+      display: block; /* Makes the navigation items display as blocks */
+      font-weight: 600; /* Sets the font weight */
+      letter-spacing: .2em; /* Adds letter spacing */
+      font-size: 14px; /* Sets the font size */
+    }
+
+    /* Center styles */
+    /* Styles for centering the content on the page */
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 140vh; /* Sets the minimum height to 140 viewport heights */
+    }
+
+    #content {
+      margin-top: -10%; /* Adds negative margin to the top of the content */
+      height: 70%; /* Sets the height of the content area */
+      width: 70%; /* Sets the width of the content area */
+      margin-left: 15%; /* Adds margin to the left of the content area */
+      margin-right: 15%; /* Adds margin to the right of the content area */
+    }
+
+    iframe {
+      width: 100%; /* Sets the width of the iframe to 100% */
+      height: calc(100vh - 180px); /* Sets the height of the iframe to cover the remaining viewport height */
+      border: none; /* Removes the border around the iframe */
+    }
+  </style>
+</head>
+
+<body>
+  <nav>
+    <!-- Navigation links -->
+    <ul>
+      <li><a href="blog.html" onclick="loadBlog()">Add post</a></li>
+      <li><a href="post.html" onclick="loadPost()">Blog</a></li>
+      <li><a href="contacts.html" onclick="loadAbout()">About author</a></li>
+    </ul>
+    <div class="line"></div> <!-- Line under active navigation item -->
+  </nav>
+
+  <div id="content"></div> <!-- Container for loaded content -->
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    // JavaScript code to handle navigation animations and loading content
+
+    // Variables to handle navigation animation
+    var nav = $('nav');
+    var line = $('<div />').addClass('line');
+
+    line.appendTo(nav);
+
+    var active = nav.find('.active');
+    var pos = 0;
+    var wid = 0;
+
+    if (active.length) {
+      pos = active.position().left;
+      wid = active.width();
+      line.css({
+        left: pos,
+        width: wid
+      });
+    }
+
+    // Event listener for navigation links
+    nav.find('ul li a').click(function (e) {
+      e.preventDefault();
+      if (!$(this).parent().hasClass('active') && !nav.hasClass('animate')) {
+
+        nav.addClass('animate');
+
+        var _this = $(this);
+
+        nav.find('ul li').removeClass('active');
+
+        var position = _this.parent().position();
+        var width = _this.parent().width();
+
+        if (position.left >= pos) {
+          line.animate({
+            width: ((position.left - pos) + width)
+          }, 300, function () {
+            line.animate({
+              width: width,
+              left: position.left
+            }, 150, function () {
+              nav.removeClass('animate');
+            });
+            _this.parent().addClass('active');
+          });
+        } else {
+          line.animate({
+            left: position.left,
+            width: ((pos - position.left) + wid)
+          }, 300, function () {
+            line.animate({
+              width: width
+            }, 150, function () {
+              nav.removeClass('animate');
+            });
+            _this.parent().addClass('active');
+          });
+        }
+
+        pos = position.left;
+        wid = width;
+      }
+    });
+
+    // JavaScript functions to load content in the iframe
+    function loadBlog() {
+      $('#content').html('<iframe src="blog.html"></iframe>');
+    }
+
+    function loadPost() {
+      $('#content').html('<iframe src="post.html"></iframe>');
+    }
+
+    function loadAbout() {
+      $('#content').html('<iframe src="contacts.html"></iframe>');
+    }
+  </script>
+</body>
+</html>

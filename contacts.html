@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About me</title>
+    <!-- Linking external stylesheets and fonts -->
+    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Defining CSS styles -->
+    <style>
+		/* Global styles */
+		* {
+		  margin: 0;
+		  padding: 0;
+		  box-sizing: border-box;
+		  list-style: none;
+		}
+
+		/* Color variables */
+		:root {
+		  --color-primary: #1A1E23;
+		  --color-secondary: #961d07;
+		  --color-white: #FFFFFF;
+		  --color-black: #000;
+		  --color-grey0: #f8f8f8;
+		  --color-grey-1: #dbe1e8;
+		  --color-grey-2: #b2becd;
+		  --color-grey-3: #6c7983;
+		  --color-grey-4: #454e56;
+		  --color-grey-5: #2a2e35;
+		  --color-grey-6: #12181b;
+		  --br-sm-2: 14px;
+		  --box-shadow-1: 0 3px 15px rgba(0,0,0,.3);
+		}
+
+		/* Light mode color scheme */
+		.light-mode {
+		  --color-primary: #FFFFFF;
+		  --color-secondary: #F56692;
+		  --color-white: #454e56;
+		  --color-black: #000;
+		  --color-grey0: #f8f8f8;
+		  --color-grey-1: #6c7983;
+		  --color-grey-2: #6c7983;
+		  --color-grey-3: #6c7983;
+		  --color-grey-4: #454e56;
+		  --color-grey-5: #f8f8f8;
+		  --color-grey-6: #12181b;
+		}
+
+		/* Body styles */
+		body {
+		  background-color: var(--color-primary); /* Sets the background color of the page */
+		  font-family: "Poppins", sans-serif; /* Sets the font-family for the page */
+		  font-size: 1.1rem; /* Sets the base font size for the page */
+		  color: var(--color-white); /* Sets the text color */
+		  transition: all 0.4s ease-in-out; /* Adds a smooth transition effect for all elements */
+		}
+
+		/* Anchor (link) styles */
+		a {
+		  display: inline-block;
+		  text-decoration: none; /* Removes underlines from links */
+		  color: inherit; /* Inherits the text color from the parent element */
+		  font-family: inherit; /* Inherits the font-family from the parent element */
+		}
+
+		/* Class for animation effect */
+		.active {
+		  display: block;
+		  animation: appear 1s ease-in-out;
+		  transform: translateY(0) scaleY(1);
+		}
+		@keyframes appear {
+		  0% {
+			transform: translateY(-100%) scaleY(0);
+		  }
+		  100% {
+			transform: translateY(0) scaleY(1);
+		  }
+		}
+		
+		/* Header-content styles */
+		.header-content {
+		  display: grid;
+		  grid-template-columns: repeat(2, 1fr); /* Sets the grid columns for the header content */
+		  min-height: 100vh; /* Sets the minimum height of the header content */
+		}
+		.header-content .left-header {
+		  display: flex;
+		  align-items: center;
+		  position: relative;
+		}
+		.header-content .left-header .h-shape {
+		  transition: all 0.4s ease-in-out;
+		  width: 65%; /* Sets the width of the header shape */
+		  height: 100%; /* Sets the height of the header shape */
+		  background-color: var(--color-secondary); /* Sets the background color of the header shape */
+		  position: absolute;
+		  left: 0;
+		  top: 0;
+		  z-index: -1;
+		  clip-path: polygon(0 0, 46% 0, 79% 100%, 0% 100%); /* Clips the header shape with a polygon */
+		}
+		.header-content .left-header .image {
+		  border-radius: var(--br-sm-2);
+		  height: 90%;
+		  width: 68%;
+		  margin-left: 4rem;
+		  background-color: var(--color-black); /* Sets the background color of the image container */
+		  transition: all 0.4s ease-in-out;
+		}
+		.header-content .left-header .image img {
+		  width: 100%;
+		  height: 100%;
+		  object-fit: cover; /* Sets the image to cover the container while maintaining aspect ratio */
+		  transition: all 0.4s ease-in-out;
+		  filter: grayscale(100%); /* Applies grayscale filter to the image */
+		}
+		.header-content .left-header .image img:hover {
+		  filter: grayscale(0); /* Removes grayscale filter on image hover */
+		}
+		.header-content .right-header {
+		  display: flex;
+		  flex-direction: column;
+		  justify-content: center;
+		  padding-right: 18rem; /* Adds right padding to the right header */
+		}
+		.header-content .right-header .name {
+		  font-size: 3rem; /* Sets the font size for the name */
+		}
+		.header-content .right-header .name span {
+		  color: var(--color-secondary); /* Sets the text color for the name span */
+		}
+		.header-content .right-header p {
+		  margin: 1.5rem 0; /* Adds top and bottom margin to the paragraphs */
+		  line-height: 2rem; /* Sets the line height for the paragraphs */
+		}
+	</style>
+</head>
+	<body class="main-content">
+        <div class="header-content">
+            <!-- Left header section -->
+            <div class="left-header">
+                <div class="h-shape"></div> <!-- Element for the header shape -->
+                <div class="image">
+                    <img src="https://mslexia.co.uk/images/page/Stocksy_txp58bb3c6eg23300_Medium_1805398.jpg" alt=""> <!-- Image element -->
+                </div>
+            </div>
+            <!-- Right header section -->
+            <div class="right-header">
+                <h1 class="name">
+                    Hi, I'm <span>ALEXANDRA LIGHT.</span>
+                    A Professional Writer.
+                </h1>
+                <!-- Paragraphs with information about Alexandra Light -->
+                <p>
+                    Alexandra Light is a passionate and accomplished professional writer with a deep love for storytelling. With a decade of experience in the field, she has honed her skills to craft compelling narratives that captivate readers from all walks of life. Her journey as a writer started from a young age when she would fill notebooks with imaginative tales and poetry, setting the foundation for her future career.
+                </p>
+                <p>
+                    Alexandra specializes in a wide range of writing styles, including articles, blog posts, short stories, and novels. Her unique voice and keen eye for detail allow her to bring characters and worlds to life, immersing readers in unforgettable adventures. Whether it's exploring the depths of fantasy realms, delving into the mysteries of science, or analyzing complex social issues, Alexandra's versatility knows no bounds.
+                </p>
+                <p>
+                    Throughout her career, Alexandra has collaborated with various publications and online platforms, earning recognition for her exceptional work. Her dedication to her craft and continuous pursuit of excellence have made her a sought-after writer in the literary community. In addition to her professional writing endeavors, Alexandra also shares her knowledge and passion through workshops and mentorship programs, inspiring the next generation of aspiring writers.
+                </p>
+           </div>
+      	</div> 
+	</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Blog</title>
+  <style>
+    /* Form styles */
+    .form {
+      width: 340px;
+      height: 440px;
+      background: #e6e6e6; /* Sets the background color of the form */
+      border-radius: 8px; /* Rounds the corners of the form */
+      box-shadow: 0 0 40px -10px #000; /* Adds a box shadow to the form */
+      margin: calc(50vh - 220px) auto; /* Centers the form vertically */
+      padding: 20px 30px; /* Adds padding inside the form */
+      max-width: calc(100vw - 40px); /* Sets the maximum width of the form */
+      box-sizing: border-box; /* Sets the box-sizing for the form */
+      font-family: 'Montserrat', sans-serif; /* Sets the font-family for the form */
+      position: relative; /* Sets the position of the form */
+    }
+
+    .form h2 {
+      margin: 10px 0;
+      padding-bottom: 10px;
+      width: 250px;
+      color: black;
+      border-bottom: 3px solid #961d07; /* Adds a colored border at the bottom of the form heading */
+    }
+
+    .form input {
+      width: 100%; /* Sets the width of the input elements to 100% */
+      padding: 10px; /* Adds padding inside the input elements */
+      box-sizing: border-box; /* Sets the box-sizing for the input elements */
+      background: none; /* Removes the background color of the input elements */
+      outline: none; /* Removes the outline on focus */
+      resize: none; /* Disables resizing of the input elements */
+      border: 0; /* Removes the border around the input elements */
+      font-family: 'Montserrat', sans-serif; /* Sets the font-family for the input elements */
+      transition: all .3s; /* Adds a smooth transition effect on hover/focus */
+      border-bottom: 2px solid #bebed2; /* Adds a border at the bottom of the input elements */
+    }
+
+    .form input:focus {
+      border-bottom: 2px solid #78788c; /* Changes the border color on input focus */
+    }
+
+    .form p:before {
+      content: attr(type);
+      display: block;
+      margin: 28px 0 0;
+      font-size: 14px;
+      color: #5a5a5a;
+    }
+
+    .form button {
+      float: right; /* Floats the button to the right */
+      padding: 8px 12px; /* Adds padding inside the button */
+      margin: 8px 0 0; /* Adds margin above the button */
+      font-family: 'Montserrat', sans-serif; /* Sets the font-family for the button */
+      border: 2px solid black; /* Sets a border around the button */
+      background: 0; /* Removes the background color of the button */
+      color: black; /* Sets the text color of the button */
+      cursor: pointer; /* Changes the cursor to a pointer on hover */
+      transition: all .3s; /* Adds a smooth transition effect on hover */
+    }
+
+    .form button:hover {
+      background: #961d07; /* Changes the background color on button hover */
+      color: #fff; /* Changes the text color on button hover */
+    }
+
+    .form div {
+      content: 'Hi'; /* Adds content to the div */
+      position: absolute; /* Positions the div absolutely */
+      bottom: -15px; /* Positions the div 15px from the bottom */
+      right: -20px; /* Positions the div 20px from the right */
+      background: #50505a; /* Sets the background color of the div */
+      color: #fff; /* Sets the text color of the div */
+      width: 320px; /* Sets the width of the div */
+      padding: 16px 4px 16px 0; /* Adds padding inside the div */
+      border-radius: 6px; /* Rounds the corners of the div */
+      font-size: 13px; /* Sets the font size of the div */
+      box-shadow: 10px 10px 40px -14px #000; /* Adds a box shadow to the div */
+    }
+
+    .form span {
+      margin: 0 5px 0 15px; /* Adds margin around the span element */
+    }
+  </style>
+</head>
+
+<body>
+  <div class="form">
+    <h2>CREATE MEMORY</h2>
+    <p type="Title:"><input placeholder="Write your title here.."></input></p>
+    <p type="Data:"><input placeholder="Write when it happened.."></input></p>
+    <p type="Text:"><input placeholder="Tell your story.."></input></p>
+    <button id="postButton">Post</button>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    // JavaScript code to handle form submission
+    $(document).ready(function() {
+      $('#postButton').click(function(e) {
+        e.preventDefault();
+        var title = $('input[placeholder="Write your title here.."]').val();
+        var data = $('input[placeholder="Write when it happened.."]').val();
+        var text = $('input[placeholder="Tell your story.."]').val();
+      });
+    });
+  </script>
+</body>
+</html>
+
+
+
